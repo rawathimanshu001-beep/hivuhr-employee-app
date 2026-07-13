@@ -19,8 +19,8 @@ name: "Your Company Pvt. Ltd."  →  name: "ABC Traders Pvt. Ltd."
 4. Coordinates appear at the bottom (e.g. 28.6139, 77.2090)
 5. First number = latitude, second = longitude
 ```
-lat: 28.677322  →  paste your latitude
-lng: 77.352169  →  paste your longitude
+lat: 28.4981  →  paste your latitude
+lng: 77.0863  →  paste your longitude
 ```
 
 **Your geofence radius:**
