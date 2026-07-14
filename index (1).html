@@ -233,8 +233,8 @@ input,select,textarea{font-family:'Inter',sans-serif;outline:none}
 .btn-login{width:100%;padding:14px;border-radius:var(--radius-sm);background:var(--navy);color:#fff;font-size:15px;font-weight:700;transition:all .2s;margin-top:4px}
 .btn-login:hover{background:var(--blue)}
 .btn-login:active{transform:scale(.98)}
-.otp-row{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:16px}
-.otp-box{padding:13px 0;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:18px;font-weight:700;color:var(--ink);text-align:center;background:var(--bg);transition:border .15s}
+.otp-row{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-bottom:16px;width:100%}
+.otp-box{width:100%;padding:10px 2px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:16px;font-weight:700;color:var(--ink);text-align:center;background:var(--bg);transition:border .15s;min-width:0}
 .otp-box:focus{border-color:var(--blue);background:var(--surface)}
 .login-back{color:var(--blue);font-size:13px;font-weight:500;text-align:center;margin-top:14px;cursor:pointer}
 
@@ -1029,7 +1029,7 @@ function sendOTP() {
   demoOTP = Math.floor(100000 + Math.random() * 900000).toString();
   document.getElementById('login-step-phone').style.display = 'none';
   document.getElementById('login-step-otp').style.display = 'block';
-  document.getElementById('otp-sub').textContent = `Code sent to ${phone} (demo: ${demoOTP})`;
+  document.getElementById("otp-sub").textContent = "Enter code: 123456 (demo mode)";
   document.querySelectorAll('.otp-box')[0].focus();
 }
 
@@ -1043,7 +1043,7 @@ function otpInput(el, idx) {
 
 function verifyOTP() {
   const entered = Array.from(document.querySelectorAll('.otp-box')).map(b => b.value).join('');
-  if (entered === demoOTP || entered === '000000' || entered.length === 6) {
+  if (entered === "123456" || entered === demoOTP) {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('main-app').style.display = 'flex';
     setGreeting();
