@@ -28,7 +28,7 @@ const PAYHR_CONFIG = {
     lat:    28.5838,    // ← Paste your office latitude here
     lng:    77.0543,    // ← Paste your office longitude here
     name:   "Head Office",
-    radius: 100000,        // ← Metres allowed from office (200 = standard)
+    radius: 3000,        // ← Metres allowed from office (200 = standard)
   },
 
   // ── GEOFENCE SETTINGS ──────────────────────────────────────
