@@ -11,7 +11,7 @@ const SUPABASE_CONFIG = {
     lat: 28.5838,
     lng: 77.0543,
     name: "Head Office",
-    radius: 200,
+    radius: 30000,
   },
 
   geofence: {
