@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>iliVU — Employee App</title>
-<meta name="description" content="iliVU Employee Portal — Clock in, apply leave, view payslip">
+<title>Hivu HR — Employee App</title>
+<meta name="description" content="Hivu HR Employee Portal — Clock in, apply leave, view payslip">
 <meta name="theme-color" content="#0066FF">
 <link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1411,7 +1411,7 @@ input, select, textarea {
       </linearGradient>
     </defs>
     <circle cx="60" cy="20" r="12" fill="url(#iliVUGrad)"/>
-    <text x="10" y="95" font-family="'Inter',Arial,sans-serif" font-weight="900" font-size="80" fill="url(#iliVUGrad)">iliVU</text>
+    <text x="10" y="95" font-family="'Inter',Arial,sans-serif" font-weight="900" font-size="80" fill="url(#iliVUGrad)">Hivu</text>
   </svg>
   <div class="login-tagline">Employee Portal</div>
   <div class="login-card" id="login-step-phone">
@@ -1450,7 +1450,7 @@ input, select, textarea {
         </linearGradient>
       </defs>
       <circle cx="60" cy="20" r="12" fill="url(#iliVUGradTop)"/>
-      <text x="10" y="95" font-family="'Inter',Arial,sans-serif" font-weight="900" font-size="80" fill="url(#iliVUGradTop)">iliVU</text>
+      <text x="10" y="95" font-family="'Inter',Arial,sans-serif" font-weight="900" font-size="80" fill="url(#iliVUGradTop)">Hivu</text>
     </svg>
     <div class="topbar-actions">
       <button class="notif-btn" id="notif-btn" onclick="toggleNotifications()">
@@ -1862,14 +1862,14 @@ let supabase;
 
 // Initialize Supabase
 async function initSupabase() {
-  if (!window.ILIVU_CONFIG || !ILIVU_CONFIG.supabaseUrl || !ILIVU_CONFIG.supabaseKey) {
+  if (!window.HIVU_CONFIG || !HIVU_CONFIG.supabaseUrl || !HIVU_CONFIG.supabaseKey) {
     console.error('Supabase credentials not configured');
     showToast('Configuration error');
     return false;
   }
 
   const { createClient } = window.supabase;
-  supabase = createClient(ILIVU_CONFIG.supabaseUrl, ILIVU_CONFIG.supabaseKey);
+  supabase = createClient(HIVU_CONFIG.supabaseUrl, HIVU_CONFIG.supabaseKey);
   console.log('✓ Supabase initialized');
   return true;
 }
@@ -2161,10 +2161,10 @@ function clockIn() {
   navigator.geolocation.getCurrentPosition(
     pos => {
       const dist = calculateDistance(
-        ILIVU_CONFIG.office.lat, ILIVU_CONFIG.office.lng,
+        HIVU_CONFIG.office.lat, HIVU_CONFIG.office.lng,
         pos.coords.latitude, pos.coords.longitude
       );
-      updateGpsModal(dist, ILIVU_CONFIG.office.radius);
+      updateGpsModal(dist, HIVU_CONFIG.office.radius);
       STATE.clockInCoords = {lat: pos.coords.latitude, lng: pos.coords.longitude, acc: pos.coords.accuracy, dist: dist};
     },
     err => {
@@ -2191,7 +2191,7 @@ function openGpsModal() {
   document.getElementById('gps-modal-overlay').classList.add('open');
   document.getElementById('gps-loading').style.display = 'flex';
   document.getElementById('gps-modal-sub').textContent = 'Getting location...';
-  document.getElementById('gps-radius-val').textContent = ILIVU_CONFIG.office.radius + ' m';
+  document.getElementById('gps-radius-val').textContent = HIVU_CONFIG.office.radius + ' m';
 }
 
 function closeGpsModal() {
@@ -2232,7 +2232,7 @@ async function confirmClock() {
         clock_in_lat: STATE.clockInCoords.lat,
         clock_in_lng: STATE.clockInCoords.lng,
         clock_in_accuracy: Math.round(STATE.clockInCoords.acc),
-        status: STATE.clockInCoords.dist <= ILIVU_CONFIG.office.radius ? 'Present' : 'Late'
+        status: STATE.clockInCoords.dist <= HIVU_CONFIG.office.radius ? 'Present' : 'Late'
       });
 
     if (error) throw error;
@@ -2266,10 +2266,10 @@ async function clockOut() {
   navigator.geolocation.getCurrentPosition(
     pos => {
       const dist = calculateDistance(
-        ILIVU_CONFIG.office.lat, ILIVU_CONFIG.office.lng,
+        HIVU_CONFIG.office.lat, HIVU_CONFIG.office.lng,
         pos.coords.latitude, pos.coords.longitude
       );
-      updateGpsModal(dist, ILIVU_CONFIG.office.radius);
+      updateGpsModal(dist, HIVU_CONFIG.office.radius);
       STATE.clockInCoords = {lat: pos.coords.latitude, lng: pos.coords.longitude, dist: dist};
     },
     err => proceedClockOut(null),
